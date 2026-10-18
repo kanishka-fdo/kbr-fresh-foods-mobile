@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "KBR Fresh Foods",
+    "slug": "kbr-fresh-foods",
+    "scheme": "kbrfreshfoods",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/app-icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "lk.kbrfreshfoods.mobile"
+    },
+    "android": {
+      "package": "lk.kbrfreshfoods.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#faf7f2",
+        "foregroundImage": "./assets/app-icon.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/app-icon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow KBR Fresh Foods to scan delivery confirmation QR codes.",
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": true
+        }
+      ],
+      "expo-sharing",
+      "expo-font",
+      "expo-status-bar"
+    ]
+  }
+}

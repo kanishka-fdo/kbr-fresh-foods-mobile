@@ -1,0 +1,80 @@
+# Dependencies and package-manager caches
+node_modules/
+.npm/
+.yarn/cache/
+.yarn/unplugged/
+.pnp.*
+
+# Expo, Metro and generated native projects (Continuous Native Generation)
+.expo/
+expo-env.d.ts
+.metro-health-check*
+/android/
+/ios/
+.gradle/
+.kotlin/
+
+# Build output, test coverage and caches
+/dist/
+/web-build/
+/build/
+/coverage/
+.cache/
+.eslintcache
+*.tsbuildinfo
+*.apk
+*.aab
+*.ipa
+*.xcarchive/
+
+# Local environment and signing credentials; keep the safe setup template
+.env
+.env.*
+!.env.example
+credentials.json
+*.jks
+*.keystore
+*.p8
+*.p12
+*.pem
+*.key
+*.mobileprovision
+
+# Logs and temporary files
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+pnpm-debug.*
+*.tmp
+*.temp
+*.swp
+*.swo
+*.orig
+*.orig.*
+*~
+
+# Machine-specific editor and assistant settings
+.idea/
+.vscode/
+.claude/
+.codex/
+
+# OS metadata
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Local operational reports; portable migration notes remain in MIGRATION.md
+/LIVE_CONNECTION.json
+/LIVE_CONNECTION.md
+/SOURCE_REFERENCE.md
+
+# Unused Expo starter artwork (the app uses assets/app-icon.png)
+/assets/android-icon-background.png
+/assets/android-icon-foreground.png
+/assets/android-icon-monochrome.png
+/assets/favicon.png
+/assets/icon.png
+/assets/splash-icon.png
