@@ -159,8 +159,8 @@ export function Stepper({ value, onChange, min = 0, max, unit, compact = false, 
 /** Two-column grid measured from its real width so cards line up exactly on every screen size. */
 export function Grid<T>({ items, render, columns = 2, gap = 12, keyOf }: { items: T[]; render: (item: T) => React.ReactNode; columns?: number; gap?: number; keyOf: (item: T) => string }) {
   const [width, setWidth] = useState(0);
-  const cell = width ? (width - gap * (columns - 1)) / columns : 0;
-  return <View onLayout={e => setWidth(e.nativeEvent.layout.width)} style={{ flexDirection: 'row', flexWrap: 'wrap', gap }}>
+  const cell = width ? Math.max(0, Math.floor((width - gap * (columns - 1)) / columns)) : 0;
+  return <View onLayout={e => setWidth(e.nativeEvent.layout.width)} style={{ width: '100%', alignSelf: 'stretch', flexDirection: 'row', flexWrap: 'wrap', gap }}>
     {!!cell && items.map(item => <View key={keyOf(item)} style={{ width: cell }}>{render(item)}</View>)}
   </View>;
 }
