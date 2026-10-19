@@ -34,6 +34,12 @@
           "barcodeScannerEnabled": true
         }
       ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow KBR Fresh Foods to use your location to set the delivery address for your order."
+        }
+      ],
       "expo-sharing",
       "expo-font",
       "expo-status-bar"

@@ -1,14 +1,19 @@
-import { Text } from 'react-native';
 import { router } from 'expo-router';
-import { Button, Card, styles } from './ui';
+import { ListGroup, ListRow, SectionTitle } from './ui';
+import type { IconName } from './Icon';
 import { useAuth } from '../context/AuthContext';
 import { canAccess } from '../lib/domain.mjs';
-const modules = [
-  ['orders', 'My orders', 'Track purchases and delivery confirmations.'], ['wholesale', 'Wholesale shop', 'Order in bulk at wholesale prices.'],
-  ['wholesale-orders', 'Wholesale orders', 'View quotes, payments and approvals.'], ['deliveries', 'My deliveries', 'Your assigned routes and QR confirmations.'],
-  ['staff-orders', 'Manage orders', 'Process orders and assign drivers.'], ['inventory', 'Inventory', 'Products, prices, stock and expiry alerts.'],
-  ['staff-wholesale', 'Wholesale management', 'Approve and fulfil bulk orders.'], ['dashboard', 'Business dashboard', 'Revenue, orders and business performance.'],
-  ['users', 'Users', 'Manage accounts and role permissions.'], ['suppliers', 'Suppliers', 'Manage your supply partners.'], ['purchases', 'Purchases', 'Record and manage incoming stock.'],
-  ['reports', 'Reports', 'Sales, customers and inventory forecasts.'], ['inventory-intelligence', 'Inventory intelligence', 'Freshness, pricing, allocation and reorder insights.'],
+const modules: [string, string, string, IconName][] = [
+  ['orders', 'My orders', 'Track purchases and delivery confirmations.', 'package'], ['wholesale', 'Wholesale shop', 'Order in bulk at wholesale prices.', 'store'],
+  ['wholesale-orders', 'Wholesale orders', 'View quotes, payments and approvals.', 'clipboard'], ['deliveries', 'My deliveries', 'Your assigned routes and QR confirmations.', 'truck'],
+  ['staff-orders', 'Manage orders', 'Process orders and assign drivers.', 'clipboard'], ['inventory', 'Inventory', 'Products, prices, stock and expiry alerts.', 'box'],
+  ['staff-wholesale', 'Wholesale management', 'Approve and fulfil bulk orders.', 'store'], ['dashboard', 'Business dashboard', 'Revenue, orders and business performance.', 'chart'],
+  ['users', 'Users', 'Manage accounts and role permissions.', 'users'], ['suppliers', 'Suppliers', 'Manage your supply partners.', 'truck'], ['purchases', 'Purchases', 'Incoming stock and supplier payments.', 'package'],
+  ['reports', 'Reports', 'Sales, customers and inventory forecasts.', 'chart'], ['inventory-intelligence', 'Inventory intelligence', 'Freshness, pricing, allocation and reorder insights.', 'leaf'],
 ];
-export default function Workspace() { const { user } = useAuth(); if (!user) return null; return <><Text style={styles.subtitle}>Your workspace</Text>{modules.filter(([key]) => canAccess(user.role, key)).map(([key, title, description]) => <Card key={key}><Text style={styles.subtitle}>{title}</Text><Text style={styles.muted}>{description}</Text><Button secondary title={'Open ' + title.toLowerCase()} onPress={() => router.push('/' + key)} /></Card>)}</>; }
+export default function Workspace() {
+  const { user } = useAuth(); if (!user) return null;
+  const visible = modules.filter(([key]) => canAccess(user.role, key));
+  if (!visible.length) return null;
+  return <><SectionTitle title="Your workspace" /><ListGroup>{visible.map(([key, title, description, icon], index) => <ListRow key={key} icon={icon} title={title} description={description} last={index === visible.length - 1} onPress={() => router.push('/' + key)} />)}</ListGroup></>;
+}
