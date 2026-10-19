@@ -13,8 +13,9 @@ function Navigation() {
   if (auth.error) return <Screen contentStyle={{ flexGrow: 1, justifyContent: 'center' }}><Empty icon="info" title="We couldn't reach KBR Fresh Foods" text={auth.error} /><Button title="Try again" onPress={() => { void auth.retry(); }} /><Button secondary title="Sign out" onPress={() => { void auth.signOut(); }} /></Screen>;
   return <ShoppingProvider><Stack key={auth.user?._id || 'guest'} screenOptions={{ headerTintColor: colors.green, headerTitleStyle: { fontFamily: font.bold, fontSize: 17, color: colors.ink }, headerStyle: { backgroundColor: colors.white }, headerShadowVisible: false, headerBackButtonDisplayMode: 'minimal', contentStyle: { backgroundColor: colors.cream } }}>
     <Stack.Screen name="(tabs)" options={{ headerShown: false, title: 'Home' }} />
-    <Stack.Screen name="login" options={{ title: 'Sign in' }} />
-    <Stack.Screen name="register" options={{ title: 'Create account' }} />
+    <Stack.Screen name="welcome" options={{ headerShown: false }} />
+    <Stack.Screen name="login" options={{ title: 'Sign in', headerShown: false }} />
+    <Stack.Screen name="register" options={{ title: 'Create account', headerShown: false }} />
     <Stack.Screen name="forgot-password" options={{ title: 'Forgot password' }} />
     <Stack.Screen name="verify-email/[token]" options={{ title: 'Verify email' }} />
     <Stack.Screen name="reset-password/[token]" options={{ title: 'Reset password' }} />
